@@ -11,4 +11,8 @@ export class MyUserService {
   selectMyUser(): Observable<MyUser | null> {
     return this.myUser$.asObservable();
   }
+
+  setUser(user: MyUser) {
+    this.myUser$.next(user);
+  }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { filter } from 'rxjs/operators';
-import { MyUserService } from '../state';
+import { MyUser, MyUserService } from '../state';
 
 @Component({
   selector: 'app-my-user-display',
@@ -14,8 +14,9 @@ export class MyUserDisplayComponent implements OnInit {
   ngOnInit() {
     this.myUserService
       .selectMyUser()
-      .pipe(filter((myUser) => !!myUser))
+      .pipe(filter((myUser): myUser is MyUser => !!myUser))
       .subscribe((myUser) => {
+        // No Error!
         this.name = myUser.name;
       });
   }
